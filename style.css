@@ -23,3 +23,7 @@ h1{
 #annualSal{
   background-color: skyblue;
 }
+
+table, th, td {
+    border: 1px solid black;
+}
