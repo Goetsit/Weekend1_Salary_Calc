@@ -1,14 +1,16 @@
-console.log('JS');
 
 $(document).ready(readyNow);
 
+var employees = [];  //empty array
+
 function readyNow(){
+
   console.log('JQ READY');
   $('#submitBtn').on('click', submitBtnSelect);
+  $('#removeBtn').on('click',removeButton);
+  $('#submitBtn').on('click', appendDom);
 
-
-}
-
+} //event listeners
 
 function submitBtnSelect(){
 
@@ -16,23 +18,64 @@ function submitBtnSelect(){
   var $inputFieldValueLast = $('#lastNameInput').val();
   var $inputFieldValueIdNum = $('#idNumInput').val();
   var $inputFieldValueJobTitle = $('#jobTitleInput').val();
-  var $inputFieldValueAnnualSalary = $('#annualSalInput').val();
-  var $btn = $(this);
+  var $inputFieldValueAnnualSalary = parseInt($('#annualSalInput').val());
+  //Set variables for all input fields
 
-  console.log($btn, $inputFieldValueFirst, $inputFieldValueLast, $inputFieldValueIdNum);
-  console.log($btn, $inputFieldValueJobTitle, $inputFieldValueAnnualSalary);
+  var employee = new Employee
+  ($inputFieldValueFirst
+    ,$inputFieldValueLast
+    ,$inputFieldValueIdNum
+    ,$inputFieldValueJobTitle
+    ,$inputFieldValueAnnualSalary);
+    employees.push(employee); //push into empty array
 
-  appendDom();
+    totals(); //run totals for monthly expenses
+  }
 
-  function appendDom(){
 
-    $('.userResults').append('<ul><li>First Name:'+' '+ $inputFieldValueFirst +'</li>');
-    $('.userResults').append('<ul><li>Last Name:'+' '+ $inputFieldValueLast +'</li>');
-    $('.userResults').append('<ul><li>ID Number:'+' '+ $inputFieldValueIdNum +'</li>');
-    $('.userResults').append('<ul><li>Job Title:'+' '+ $inputFieldValueJobTitle +'</li>');
-    $('.userResults').append('<ul><li>Annaul Salary'+' '+ $inputFieldValueAnnualSalary +'</li></ul><br>');
+  function Employee(firstNameIn,lastNameIn,idNumberIn,jobTitleIn,annualSalaryIn) {
+    this.firstName = firstNameIn;
+    this.lastName = lastNameIn;
+    this.idNumber = idNumberIn;
+    this.jobTitle = jobTitleIn;
+    this.annualSalary = annualSalaryIn;
+  }
 
+
+  function totals() {
+
+    var yearly = 0;
+    var monthly = 0;
+    for(var i = 0; i < employees.length; i += 1){
+      yearly += employees[i].annualSalary;
+    }
+    monthly = Math.floor(yearly / 12);
+
+    $('#total').append(monthly);
+
+    console.log(monthly);
 
   }
 
-}
+  function appendDom(){
+    for(var i = 0; i < employees.length; i += 1) {
+      $('#empTable').append(newRow(employees[i],i));
+    } //loop through employees array to append table
+  }//calls newRow function to add row
+
+
+  function newRow(employees,i){
+    var rowInsert = '<tr>';
+    rowInsert += '<td>' + employees.firstName +'</td>';
+    rowInsert += '<td>' + employees.lastName + '</td>';
+    rowInsert += '<td>' + employees.idNumber + '</td>';
+    rowInsert += '<td>' + employees.jobTitle + '</td>';
+    rowInsert += '<td>' + employees.annualSalary + '</td>';
+    rowInsert += '</tr>';
+    $row = $(rowInsert);
+    return $row;
+  } //append rows to existing #empTable
+
+  function removeButton(){
+    $('tr:last').remove();
+  }  //buttons removes last list item
