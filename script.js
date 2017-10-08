@@ -51,7 +51,7 @@ function submitBtnSelect(){
     }
     monthly = yearly / 12;
 
-    $('#total').text(monthly.toFixed());
+    $('#total').text(monthly.toFixed()); //take annual sal divide by 12
 
   }
 
@@ -68,7 +68,7 @@ function submitBtnSelect(){
     rowInsert += '<td>' + employees.lastName + '</td>';
     rowInsert += '<td>' + employees.idNumber + '</td>';
     rowInsert += '<td>' + employees.jobTitle + '</td>';
-    rowInsert += '<td class = "yearlySal">' + employees.annualSalary + '</td>';
+    rowInsert += '<td>' + employees.annualSalary + '</td>';
     rowInsert += '</tr>';
     $newRow = $(rowInsert);
     return $newRow;
