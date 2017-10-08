@@ -27,8 +27,6 @@ function submitBtnSelect(){
     ,$inputFieldValueJobTitle
     ,$inputFieldValueAnnualSalary);
     employees.push(employee); //push into empty array
-
-
     totals(); //run totals for monthly expenses
   }
 
@@ -70,8 +68,7 @@ function submitBtnSelect(){
     rowInsert += '<td>' + employees.jobTitle + '</td>';
     rowInsert += '<td>' + employees.annualSalary + '</td>';
     rowInsert += '</tr>';
-    $newRow = $(rowInsert);
-    return $newRow;
+    return rowInsert;
   } //append rows to existing #empTable
 
   function removeButton(){
