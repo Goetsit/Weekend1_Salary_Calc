@@ -27,6 +27,7 @@ function submitBtnSelect(){
     ,$inputFieldValueJobTitle
     ,$inputFieldValueAnnualSalary);
     employees.push(employee); //push into empty array
+    $('input').val(''); //clear input fields
     totals(); //run totals for monthly expenses
 
 
