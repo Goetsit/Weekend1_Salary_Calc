@@ -28,6 +28,8 @@ function submitBtnSelect(){
     ,$inputFieldValueAnnualSalary);
     employees.push(employee); //push into empty array
     totals(); //run totals for monthly expenses
+
+
   }
 
 
@@ -54,6 +56,7 @@ function submitBtnSelect(){
   }
 
   function appendDom(){
+    $('#empTable').empty();
     for(var i = 0; i < employees.length; i += 1) {
       $('#empTable').append(newRow(employees[i],i));
     } //loop through employees array to append table
@@ -68,7 +71,12 @@ function submitBtnSelect(){
     rowInsert += '<td>' + employees.jobTitle + '</td>';
     rowInsert += '<td>' + employees.annualSalary + '</td>';
     rowInsert += '</tr>';
+
+
+    console.log(employees);
+
     return rowInsert;
+
   } //append rows to existing #empTable
 
   function removeButton(){
