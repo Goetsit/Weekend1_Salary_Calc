@@ -34,7 +34,8 @@ button{
   font-family: 'Reenie Beanie', cursive;
 }
 
-table, th, td {
+
+table,thead,tbody, th, td {
     border: 1px solid black;
     font-family: 'Reenie Beanie', cursive;
 }
